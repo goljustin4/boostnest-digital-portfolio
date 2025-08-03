@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'inter': ['Inter', 'system-ui', 'sans-serif'],
+				'poppins': ['Poppins', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +65,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Brand specific colors
+				brand: {
+					primary: 'hsl(var(--brand-primary))',
+					accent: 'hsl(var(--brand-accent))',
+					'accent-hover': 'hsl(var(--brand-accent-hover))',
+					background: 'hsl(var(--brand-background))',
+					text: 'hsl(var(--brand-text))'
 				}
 			},
 			borderRadius: {

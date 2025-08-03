@@ -8,35 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* BoostNest Digital Brand Colors */
+    --background: 219 23% 97%; /* #F8FAFC - Clean off-white */
+    --foreground: 216 19% 18%; /* #1E293B - Dark gray-blue */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 216 19% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 216 19% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 33% 17%; /* #0F172A - Deep Navy Blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 219 23% 97%; /* Light background */
+    --secondary-foreground: 216 19% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 219 23% 95%;
+    --muted-foreground: 215 14% 54%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 213 94% 68%; /* #3B82F6 - Bright Blue */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 213 94% 68%;
 
-    --radius: 0.5rem;
+    /* Custom Design Tokens */
+    --brand-primary: 217 33% 17%; /* #0F172A */
+    --brand-accent: 213 94% 68%; /* #3B82F6 */
+    --brand-accent-hover: 213 87% 60%; /* #2563EB */
+    --brand-background: 219 23% 97%; /* #F8FAFC */
+    --brand-text: 216 19% 18%; /* #1E293B */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(217 33% 25%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--brand-accent)), hsl(213 87% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(213 94% 68% / 0.1));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(var(--brand-primary) / 0.08);
+    --shadow-medium: 0 8px 30px hsl(var(--brand-primary) / 0.12);
+    --shadow-large: 0 20px 60px hsl(var(--brand-primary) / 0.15);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +122,77 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Custom Button Variants */
+  .btn-hero {
+    @apply bg-accent hover:bg-[hsl(var(--brand-accent-hover))] text-accent-foreground px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground px-8 py-4 rounded-xl font-semibold transition-all duration-300;
+  }
+
+  /* Floating WhatsApp Button */
+  .whatsapp-float {
+    @apply fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50;
+  }
+
+  /* Section Containers */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient Backgrounds */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  /* Animation Classes */
+  .fade-in {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .fade-in.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .slide-in-left {
+    @apply opacity-0 -translate-x-8 transition-all duration-700 ease-out;
+  }
+
+  .slide-in-left.visible {
+    @apply opacity-100 translate-x-0;
+  }
+
+  .slide-in-right {
+    @apply opacity-0 translate-x-8 transition-all duration-700 ease-out;
+  }
+
+  .slide-in-right.visible {
+    @apply opacity-100 translate-x-0;
+  }
+
+  /* Service Card Hover Effects */
+  .service-card {
+    @apply bg-card border border-border rounded-2xl p-8 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] transform hover:-translate-y-2 transition-all duration-300;
+  }
+
+  /* Testimonial Card */
+  .testimonial-card {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-[var(--shadow-soft)] relative;
+  }
+
+  /* Case Study Card */
+  .case-study-card {
+    @apply bg-card border border-border rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] transform hover:-translate-y-1 transition-all duration-300;
   }
 }
